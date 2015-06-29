@@ -17,9 +17,25 @@ $container = $kernel->getContainer();
 $container->enterScope('request');
 $container->set('request', $request);
 
+// All setup done
+
+/*
 $templating = $container->get('templating');
 
 echo $templating->render(
     'EventBundle:Default:index.html.twig',
     array('name' => 'Vader')
 );
+*/
+
+use VitorReis\EventBundle\Entity\Event;
+
+$event = new Event();
+$event->setName('Darth\'s surprise birthday party');
+$event->setLocation('Deathstar');
+$event->setTime(new \Datetime('tomorrow noon'));
+//$event->setDetails('Darth hates surprises');
+
+$em = $container->get('doctrine')->getManager();
+$em->persist($event);
+$em->flush();

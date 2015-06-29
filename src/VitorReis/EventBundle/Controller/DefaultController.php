@@ -9,7 +9,20 @@ class DefaultController extends Controller
 {
     public function indexAction($name)
     {
-        //return $this->render('EventBundle:Default:index.html.twig', array('name' => $name));
+        $em = $this->getDoctrine()->getManager();
+        $repo = $em->getRepository('EventBundle:Event');
+
+        $event = $repo->findOneBy(array(
+            'name' => 'Darth\'s surprise birthday party'));
+
+        return $this->render(
+            'EventBundle:Default:index.html.twig', 
+            array(
+                'name' => $name,
+                'event' => $event
+                )
+            );
+        /*
         $array = array(
             'name' => $name,
             'xpto' => 'It\'s a traaaaap!');
@@ -21,5 +34,6 @@ class DefaultController extends Controller
         $response->headers->set('Content-Type', 'application/json');
 
         return $response;
+        /*/
     }
 }

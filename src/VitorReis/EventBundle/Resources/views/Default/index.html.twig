@@ -1,1 +1,16 @@
+{% extends '::base.html.twig' %}
+
+{% block title 'This is the title of Events' %}
+
+{% block body %}
+
 Hello {{ name }}!
+
+<h2>Event details</h2>
+
+{{event.name}}<br />
+{{event.location}}<br />
+{#{event.time}#}<br />
+{{event.details}}<br />
+
+{% endblock %}
