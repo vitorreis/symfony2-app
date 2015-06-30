@@ -5,6 +5,13 @@ security:
             memory: ~
 
     firewalls:
+        secured_area:
+            pattern: ^/
+            form_login:
+                check_path: _security_check
+                login_path: /my-login-url
+            anonymous: ~
+
         dev:
             pattern: ^/(_(profiler|wdt|error)|css|images|js)/
             security: false
